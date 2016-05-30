@@ -64,13 +64,25 @@ module.exports  = class RequestClient
   delete: @::del
   head: (name, options)->
     @request 'head', name, options
-  login: (user, options)->
+
+  _getUserOptions: (options)->
     options = {} unless options
     unless options.baseUrl
       options.baseUrl = if @app then @app.get 'restApiRoot' else RequestClient.API_ROOT
       options.baseUrl = path.join options.baseUrl, RequestClient.USERS
+    options
+  login: (user, options)->
+    options = @_getUserOptions options
     @request 'post', 'login', options
     .send user
     .expect 200
     .then (response)=>
       @accessToken = response.body.id if response.body.id
+      response
+  logout: (options)->
+    options = @_getUserOptions options
+    @request 'post', 'logout', options
+    .expect 204
+    .then (response)=>
+      @accessToken = null
+      response

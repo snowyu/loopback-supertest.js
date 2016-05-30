@@ -34,6 +34,8 @@ describe "Accounts", ->
   it "should create a new account", ->
     accounts.post(username: 'jack', password:'xxx', email:'xxx@xx.com')
     .expect 200
+  it "should login a account", ->
+    accounts.login username: 'jack', password:'xxx'
 
 ```
 

@@ -1,7 +1,7 @@
 {
   "name": "loopback-supertest",
   "description": "supertest helper request object for Loopback.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Riceball LEE",
     "email": "snowyu.lee@gmail.com",
@@ -78,6 +78,7 @@
     "rimraf": "~2.5.2",
     "shasum": "1.0.0",
     "sinon": "~1.17.4",
-    "sinon-chai": "~2.8.0"
+    "sinon-chai": "~2.8.0",
+    "superagent-mock": "^1.10.0"
   }
 }
