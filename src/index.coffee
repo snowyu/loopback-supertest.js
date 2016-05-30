@@ -26,7 +26,7 @@ module.exports  = class RequestClient
   @param server the express server or server url address
   ###
   constructor: (server, url, name)->
-    return new RequestClient(server, url) unless this instanceof RequestClient
+    return new RequestClient(server, url, name) unless this instanceof RequestClient
     @server = server
     if isFunc url.get
       @app = url
