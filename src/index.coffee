@@ -27,7 +27,7 @@ module.exports  = class RequestClient
   constructor: (server, root, name)->
     return new RequestClient(server, root, name) unless this instanceof RequestClient
     @server = server
-    root = url.get('restApiRoot') if isObject(root) and isFunc(root.get)
+    root = root.get('restApiRoot') if isObject(root) and isFunc(root.get)
     if isString root
       @apiRoot = root
       root = path.join root, name if isString name
