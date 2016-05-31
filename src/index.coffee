@@ -28,12 +28,14 @@ module.exports  = class RequestClient
   constructor: (server, url, name)->
     return new RequestClient(server, url, name) unless this instanceof RequestClient
     @server = server
-    if isFunc url.get
+    if url and isFunc url.get
       @app = url
       url  = url.get 'restApiRoot'
     if isString url
       url = path.join url, name if isString name
-      @baseUrl = url
+    else
+      url = ''
+    @baseUrl = url
 
   request: (method, name, options)->
     url = (options and options.baseUrl) || @baseUrl
