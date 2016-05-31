@@ -17,6 +17,8 @@ npm install --save-dev supertest, supertest-as-promised, loopback-supertest
 app     = require '../server/test-app'
 Api     = require 'loopback-supertest'
 
+Api.USERS = 'Accounts' # your user model api endpoint, defaults to Users
+
 describe "Accounts", ->
 
   server = null
@@ -43,7 +45,7 @@ describe "Accounts", ->
 `test-app.js`:
 
 ```js
-process.env.NODE_ENV = 'test' //TODO: BUG change to everything could not work!!
+process.env.NODE_ENV = 'test'
 
 require('coffee-script/register');
 require('require-yaml');

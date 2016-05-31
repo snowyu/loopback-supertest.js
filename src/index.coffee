@@ -19,23 +19,21 @@ server = app.listen (err)->
   .then (response)->
 ###
 module.exports  = class RequestClient
-  @API_ROOT     = '/api/'
   @USERS        = 'Users'
 
   ###
   @param server the express server or server url address
   ###
-  constructor: (server, url, name)->
-    return new RequestClient(server, url, name) unless this instanceof RequestClient
+  constructor: (server, root, name)->
+    return new RequestClient(server, root, name) unless this instanceof RequestClient
     @server = server
-    if url and isFunc url.get
-      @app = url
-      url  = url.get 'restApiRoot'
-    if isString url
-      url = path.join url, name if isString name
+    root = url.get('restApiRoot') if isObject(root) and isFunc(root.get)
+    if isString root
+      @apiRoot = root
+      root = path.join root, name if isString name
     else
-      url = if isString(name) then name else ''
-    @baseUrl = url
+      root = if isString(name) then name else ''
+    @baseUrl = root
 
   request: (method, name, options)->
     url = (options and options.baseUrl) || @baseUrl
@@ -43,6 +41,7 @@ module.exports  = class RequestClient
     accessToken = if options and options.accessToken then options.accessToken  else @accessToken
     result = request(@server)[method] url
     debug '%s %s accessToken:%s', method, url, accessToken
+    debug options if options
     result.set 'Authorization', accessToken if accessToken
     result
   get: (name, options)->
@@ -70,7 +69,7 @@ module.exports  = class RequestClient
   _getUserOptions: (options)->
     options = {} unless options
     unless options.baseUrl
-      options.baseUrl = if @app then @app.get 'restApiRoot' else RequestClient.API_ROOT
+      options.baseUrl = if @apiRoot then @apiRoot else RequestClient.API_ROOT
       options.baseUrl = path.join options.baseUrl, RequestClient.USERS
     options
   login: (user, options)->
