@@ -82,6 +82,7 @@ module.exports  = class RequestClient
   logout: (options)->
     options = @_getUserOptions options
     @request 'post', 'logout', options
+    .query accessToken: @accessToken
     .expect 204
     .then (response)=>
       @accessToken = null
