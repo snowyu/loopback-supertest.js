@@ -34,7 +34,7 @@ module.exports  = class RequestClient
     if isString url
       url = path.join url, name if isString name
     else
-      url = ''
+      url = if isString(name) then name else ''
     @baseUrl = url
 
   request: (method, name, options)->
