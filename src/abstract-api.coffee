@@ -59,14 +59,14 @@ module.exports = class AbstractApi
   find: (aFilter, stCode = 200)->
     result = @get()
     if isObject aFilter
-      for key, value of aFilter
-        aFilter[key] = JSON.stringify value
+      aFilter = JSON.stringify aFilter
+      debug 'find filter=%s', aFilter
       result.query filter: aFilter
     result.expect stCode
   findOne: (aFilter, stCode = 200)->
     result = @get 'findOne'
     if isObject aFilter
-      for key, value of aFilter
-        aFilter[key] = JSON.stringify value
+      aFilter = JSON.stringify aFilter
+      debug 'findOne filter=%s', aFilter
       result.query filter: aFilter
     result.expect stCode
