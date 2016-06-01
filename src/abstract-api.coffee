@@ -63,6 +63,13 @@ module.exports = class AbstractApi
       debug 'find filter=%s', aFilter
       result.query filter: aFilter
     result.expect stCode
+  findById: (aId, aFilter, stCode = 200)->
+    result = @get encodeURIComponent aId
+    if isObject aFilter
+      aFilter = JSON.stringify aFilter
+      debug 'find filter=%s', aFilter
+      result.query filter: aFilter
+    result.expect stCode
   findOne: (aFilter, stCode = 200)->
     result = @get 'findOne'
     if isObject aFilter
