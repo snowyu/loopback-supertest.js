@@ -1,10 +1,11 @@
 chai      = require 'chai'
 expect    = chai.expect
 
-Request   = require './'
+debug   = require('debug')('superagent')
 inherits  = require 'inherits-ex/lib/inherits'
 extend    = require 'util-ex/lib/_extend'
 isObject  = require 'util-ex/lib/is/type/object'
+Request   = require './'
 
 
 module.exports = class AbstractApi
