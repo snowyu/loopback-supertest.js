@@ -43,6 +43,7 @@ module.exports = class AbstractApi
       response
   editItem: (aItem, stCode = 200)->
     @put encodeURIComponent aItem.id
+    .send aItem
     .expect stCode
     .then (response)->
       if stCode is 200
