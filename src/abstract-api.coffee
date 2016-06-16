@@ -42,7 +42,7 @@ module.exports = class AbstractApi
         expect(response.body).to.containSubset expected
       response
   editItem: (aItem, stCode = 200)->
-    @put encodeURIComponent aItem.id, data: aItem
+    @put encodeURIComponent(aItem.id), data: aItem
     .expect stCode
     .then (response)->
       if stCode is 200
