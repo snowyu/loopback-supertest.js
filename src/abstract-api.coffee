@@ -77,4 +77,5 @@ module.exports = class AbstractApi
       aFilter = JSON.stringify aFilter
       debug 'findOne filter=%s', aFilter
       result = result.query filter: aFilter
-    result.expect stCode
+    result = result.expect stCode if stCode != -1
+    result

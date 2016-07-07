@@ -76,9 +76,10 @@ module.exports  = class RequestClient
     options = @_getUserOptions options
     @request 'post', 'login', options
     .send user
-    .expect 200
     .then (response)=>
-      @accessToken = response.body.id if response.body.id
+      if response and response.body
+        @accessToken = response.body.id if response.body.id
+        user.id = response.body.userId if response.body.userId
       response
   logout: (options)->
     options = @_getUserOptions options
