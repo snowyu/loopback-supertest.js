@@ -58,8 +58,7 @@
   },
   "peerDependencies": {
     "chai": "*",
-    "supertest": "*",
-    "supertest-as-promised": "*"
+    "supertest": ">=2.0.0"
   },
   "devDependencies": {
     "chai": "~3.5.0",

@@ -1,5 +1,5 @@
 debug   = require('debug')('superagent')
-request = require 'supertest-as-promised'
+request = require 'supertest'
 path    = require 'path.js/lib/posix'
 isString= require 'util-ex/lib/is/type/string'
 isObject= require 'util-ex/lib/is/type/object'
