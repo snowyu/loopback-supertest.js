@@ -1,7 +1,7 @@
 {
   "name": "loopback-supertest",
   "description": "supertest helper request object for Loopback.",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "author": {
     "name": "Riceball LEE",
     "email": "snowyu.lee@gmail.com",
